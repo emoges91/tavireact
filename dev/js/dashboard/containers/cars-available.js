@@ -48,7 +48,7 @@ class CarsAvailable extends React.Component {
                                         <th className="column-title">Estado</th>
                                         <th className="column-title no-link last"><span className="nobr">Action</span>
                                         </th>
-                                        <th className="bulk-actions" colspan="7">
+                                        <th className="bulk-actions" colSpan={7}>
                                             <a className="antoo" style={{ color: colorFontOptions.White }}>Bulk Actions ( <span className="action-cnt"> </span> ) <i className="fa fa-chevron-down"></i></a>
                                         </th>
                                     </tr>
