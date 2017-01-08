@@ -8,8 +8,9 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            identifier: '',
-            password: '',
+            user: '',
+            pass: '',
+            apiKey: 'VOFN459045NGFLGFL496WEYLPOP',
             errors: {},
             isLoading: false
         };
@@ -44,23 +45,23 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        const { errors, identifier, password, isLoading } = this.state;
+        const { errors, user, pass, isLoading } = this.state;
 
         return (
             <form onSubmit={this.onSubmit}>
                 <h1>Tavi Taxi</h1>
                 {errors.form && <div className="alert alert-danger">{errors.form}</div>}
                 <TextField
-                    field="identifier"
-                    value={identifier}
-                    error={errors.identifier}
+                    field="user"
+                    value={user}
+                    error={errors.user}
                     onChange={this.onChange}
                     placeholder="Usuario / Email"
                     />
                 <TextField
-                    field="password"
-                    value={password}
-                    error={errors.password}
+                    field="pass"
+                    value={pass}
+                    error={errors.pass}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Contrase&ntilde;a"
