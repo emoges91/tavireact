@@ -5,7 +5,7 @@ import App from './components/App';
 import CarAddPage from './cars/components/car-add-page';
 import CarsPage from './cars/components/cars-page';
 import SignupPage from './components/signup/SignupPage';
-import LoginPage from './components/login/LoginPage';
+import LoginPage from './login/components/login-page';
 import NewEventPage from './components/events/NewEventPage';
 import DashboardPage from './dashboard/components/dashboard-page';
 

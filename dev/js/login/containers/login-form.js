@@ -1,8 +1,8 @@
 import React from 'react';
-import TextFieldGroup from '../common/TextFieldGroup';
-import validateInput from './validations/login';
+import validateInput from './validations/login-val';
 import { connect } from 'react-redux';
-import { login } from '../../actions/authActions';
+import { login } from '../actions/auth-actions';
+import TextField from '../../common/containers/forms/text-field-login';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -48,28 +48,34 @@ class LoginForm extends React.Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <h1>Login</h1>
-
+                <h1>Tavi Taxi</h1>
                 {errors.form && <div className="alert alert-danger">{errors.form}</div>}
-
-                <TextFieldGroup
+                <TextField
                     field="identifier"
-                    label="Username / Email"
                     value={identifier}
                     error={errors.identifier}
                     onChange={this.onChange}
+                    placeholder="Usuario / Email"
                     />
-
-                <TextFieldGroup
+                <TextField
                     field="password"
-                    label="Password"
                     value={password}
                     error={errors.password}
                     onChange={this.onChange}
                     type="password"
+                    placeholder="Contrase&ntilde;a"
                     />
-
-                <div className="form-group"><button className="btn btn-primary btn-lg" disabled={isLoading}>Login</button></div>
+                <div>
+                    <button className="btn btn-default submit" disabled={isLoading}>Iniciar Session</button>
+                    <a className="reset_pass" href="#">Perdio su Contrase&ntilde;a?</a>
+                </div>
+                <div className="clearfix"></div>
+                <div className="separator">
+                    <br />
+                    <div>
+                        <p>©2016 All Rights Reserved. Tavi Taxi S.A Privacy and Terms</p>
+                    </div>
+                </div>
             </form>
         );
     }

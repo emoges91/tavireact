@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const TextField = ({ field, value, label, error, type, onChange }) => {
+const TextField = ({ field, value, label, error, type, onChange,placeholder }) => {
     return (
         <div className="item form-group">
             <label className="control-label col-md-3 col-sm-3 col-xs-12" for={field}>
@@ -14,7 +14,7 @@ const TextField = ({ field, value, label, error, type, onChange }) => {
                     data-validate-length-range="6"
                     data-validate-words="2"
                     name={field}
-                    placeholder="BTL-1334"
+                    placeholder={placeholder}
                     required="required"
                     value={value}
                     type={type} />

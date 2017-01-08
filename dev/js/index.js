@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import jwtDecode from 'jwt-decode';
-import { setCurrentUser } from './actions/authActions';
+import { setCurrentUser } from './login/actions/auth-actions';
 
 import routes from './routes';
 

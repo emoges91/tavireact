@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { logout } from '../../actions/authActions';
+import { logout } from '../../login/actions/auth-actions';
 
 class NavigationBar extends React.Component {
     logout(e) {

@@ -4,7 +4,6 @@ import ComboField from '../../common/containers/forms/combo-field';
 import SingleCheckboxField from '../../common/containers/forms/single-checkbox-field';
 import validateInput from '../validations/new-car';
 import { connect } from 'react-redux';
-import { login } from '../../actions/authActions';
 
 class CarForm extends React.Component {
     constructor(props) {
@@ -142,4 +141,4 @@ CarForm.contextTypes = {
     router: React.PropTypes.object.isRequired
 }
 
-export default connect(null, { login })(CarForm);
+export default connect(null)(CarForm);
