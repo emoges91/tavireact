@@ -1,7 +1,6 @@
 import axios from 'axios';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
-import { API_REF_LOGIN } from '../../utils/api-ref';
-import jwtDecode from 'jwt-decode';
+import { API_REF_LOGIN, API_REF_BASE } from '../../utils/api-ref';
 import { SET_CURRENT_USER } from '../../common/actions/types';
 
 export function setCurrentUser(user) {
@@ -21,18 +20,42 @@ export function logout() {
 
 export function login(data) {
   return dispatch => {
-   
-      alert(data);
-    return axios.post(
-      API_REF_LOGIN,
-      data
+    var querystring = require('querystring');
+
+    //multipart/form-data
+    //'application/json;charset=utf-8'
+
+    var instance = axios.create({
+      baseURL: API_REF_BASE,
+      method: 'POST',
+      timeout: 1000,
+      data: querystring.stringify({
+        apiKey: 'VOFN459045NGFLGFL496WEYLPOP',
+        user: data.user,
+        pass: data.pass,
+        request: 'Authenticate'
+      }),
+    });
+
+    console.log(JSON.stringify(data));
+
+    return instance.post(
+      '/api.php?request=Authenticate&apiKey=VOFN459045NGFLGFL496WEYLPOP',
+      querystring.stringify({
+        apiKey: 'VOFN459045NGFLGFL496WEYLPOP',
+        user: data.user,
+        pass: data.pass,
+        request: 'Authenticate'
+      })
     ).then(res => {
-      alert('hi:' + res.data);
+      console.log('response');
+      console.log(JSON.stringify(res.data));
 
       const token = res.data.token;
+
       localStorage.setItem('jwtToken', token);
       setAuthorizationToken(token);
-      dispatch(setCurrentUser(jwtDecode(token)));
+      dispatch(setCurrentUser(token));
     });
   }
 }

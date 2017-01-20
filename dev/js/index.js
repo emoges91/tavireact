@@ -7,7 +7,6 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import setAuthorizationToken from './utils/setAuthorizationToken';
-import jwtDecode from 'jwt-decode';
 import { setCurrentUser } from './login/actions/auth-actions';
 
 import routes from './routes';
@@ -22,7 +21,7 @@ const store = createStore(
 
 if (localStorage.jwtToken) {
     setAuthorizationToken(localStorage.jwtToken);
-    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+    store.dispatch(setCurrentUser((localStorage.jwtToken)));
 }
 
 ReactDOM.render(
