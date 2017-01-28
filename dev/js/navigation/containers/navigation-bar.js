@@ -4,13 +4,19 @@ import { connect } from 'react-redux';
 import { logout } from '../../login/actions/auth-actions';
 
 class NavigationBar extends React.Component {
-    logout(e) {
-        e.preventDefault();
+    constructor(props) {
+        super(props);
+        this.onLogout = this.onLogout.bind(this);
+    }
+
+    onLogout(e) {
+        e.preventDefault(); 
         this.props.logout();
+        this.context.router.push('/viajerito/web/logoff');
     }
 
     render() {
-        const { isAuthenticated } = this.props.auth;
+        const { isAuthenticated } = this.props.currentUserReducer;
 
         return (
             <div className="top_nav">
@@ -30,7 +36,7 @@ class NavigationBar extends React.Component {
                                 <ul className="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
                                     <li><a href="javascript:;">  Perfil</a>
                                     </li>
-                                    <li><a href="login.html"><i className="fa fa-sign-out pull-right"></i> Cerrar session</a>
+                                    <li><a href="login.html" onClick={this.onLogout}><i className="fa fa-sign-out pull-right"></i> Cerrar session</a>
                                     </li>
                                 </ul>
                             </li>
@@ -76,13 +82,18 @@ class NavigationBar extends React.Component {
 }
 
 NavigationBar.propTypes = {
-    auth: React.PropTypes.object.isRequired,
+    currentUserReducer: React.PropTypes.object.isRequired,
     logout: React.PropTypes.func.isRequired
 }
 
+NavigationBar.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
+
+
 function mapStateToProps(state) {
     return {
-        auth: state.auth
+        currentUserReducer: state.currentUserReducer
     };
 }
 

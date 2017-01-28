@@ -18,14 +18,14 @@ class SidebarMenu extends React.Component {
                         </li>
                         <li><a><i className="fa fa-handshake-o"></i> Viajes <span className="fa fa-chevron-down"></span></a>
                             <ul className="nav child_menu" style={{ display: displayOptions.None }}>
-                                <li><Link to="/signup">Crear</Link></li>
-                                <li><Link to="/login">Ver viajes</Link></li>
+                                <li><Link to="/viajerito/web/signup">Crear</Link></li>
+                                <li><Link to="/viajerito/web/login">Ver viajes</Link></li>
                             </ul>
                         </li>
                         <li><a><i className="fa fa-car"></i> Vehiculos <span className="fa fa-chevron-down"></span></a>
                             <ul className="nav child_menu" style={{ display: displayOptions.None }}>
-                                <li><Link to="/car_add">Inscribir</Link></li>
-                                <li><Link to="/cars">Ver vehiculos</Link></li>
+                                <li><Link to="/viajerito/web/car_add">Inscribir</Link></li>
+                                <li><Link to="/viajerito/web/cars">Ver vehiculos</Link></li>
                             </ul>
                         </li>
                         <li><a><i className="fa fa-id-card-o"></i> Choferes <span className="fa fa-chevron-down"></span></a>
@@ -59,12 +59,12 @@ class SidebarMenu extends React.Component {
 }
 
 SidebarMenu.propTypes = {
-    auth: React.PropTypes.object.isRequired,
+    currentUserReducer: React.PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {
     return {
-         auth: state.auth
+        currentUserReducer: state.currentUserReducer
     };
 }
 

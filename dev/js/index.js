@@ -19,9 +19,9 @@ const store = createStore(
     )
 );
 
-if (localStorage.jwtToken) {
-    setAuthorizationToken(localStorage.jwtToken);
-    store.dispatch(setCurrentUser((localStorage.jwtToken)));
+if (localStorage.SessionToken) {
+    setAuthorizationToken(localStorage.SessionToken);
+    store.dispatch(setCurrentUser((localStorage.SessionToken)));
 }
 
 ReactDOM.render(

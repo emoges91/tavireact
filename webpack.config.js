@@ -24,7 +24,8 @@ module.exports = {
         ]
     },
     output: {
-        path: 'src',
+        path: './src/viajerito/web',
+        publicPath: "/viajerito/web/",
         filename: 'js/bundle.min.js'
     },
     plugins: [

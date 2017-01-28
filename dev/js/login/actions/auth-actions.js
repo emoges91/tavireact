@@ -12,7 +12,7 @@ export function setCurrentUser(user) {
 
 export function logout() {
   return dispatch => {
-    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('SessionToken');
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
   }
@@ -22,11 +22,8 @@ export function login(data) {
   return dispatch => {
     var querystring = require('querystring');
 
-    //multipart/form-data
-    //'application/json;charset=utf-8'
-
     var instance = axios.create({
-      baseURL: API_REF_BASE,
+      //  baseURL: API_REF_BASE,
       method: 'POST',
       timeout: 1000,
       data: querystring.stringify({
@@ -37,8 +34,6 @@ export function login(data) {
       }),
     });
 
-    console.log(JSON.stringify(data));
-
     return instance.post(
       '/api.php?request=Authenticate&apiKey=VOFN459045NGFLGFL496WEYLPOP',
       querystring.stringify({
@@ -48,14 +43,25 @@ export function login(data) {
         request: 'Authenticate'
       })
     ).then(res => {
-      console.log('response');
-      console.log(JSON.stringify(res.data));
 
+      const user = { id: "", name: "" };
+      const errorMessage = res.data.Error;
       const token = res.data.token;
+      const IsAuth = res.data.IsAuth;
 
-      localStorage.setItem('jwtToken', token);
-      setAuthorizationToken(token);
-      dispatch(setCurrentUser(token));
+      if (IsAuth == true) {
+        localStorage.setItem('SessionToken', token);
+        setAuthorizationToken(token);
+        console.log('aprovado');
+
+        user.name = res.data.User;
+        user.id = res.data.User;
+
+      } else {
+        console.log('declinado');
+      }
+
+      dispatch(setCurrentUser(user));
     });
   }
 }
