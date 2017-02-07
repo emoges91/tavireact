@@ -16,7 +16,7 @@ class NavigationBar extends React.Component {
     }
 
     render() {
-        const { isAuthenticated } = this.props.currentUserReducer;
+        const { user } = this.props.currentUserReducer;
 
         return (
             <div className="top_nav">
@@ -30,7 +30,7 @@ class NavigationBar extends React.Component {
                         <ul className="nav navbar-nav navbar-right">
                             <li className="">
                                 <a href="javascript:;" className="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="" />John Doe
+                                    <img src="images/img.jpg" alt="" />{user.name}
                                     <span className=" fa fa-angle-down"></span>
                                 </a>
                                 <ul className="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -82,7 +82,6 @@ class NavigationBar extends React.Component {
 }
 
 NavigationBar.propTypes = {
-    currentUserReducer: React.PropTypes.object.isRequired,
     logout: React.PropTypes.func.isRequired
 }
 

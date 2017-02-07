@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 class ProfileQuickInfo extends React.Component {
 
     render() {
+        const { user } = this.props.currentUserReducer;
+
         return (
             <div className="profile">
                 <div className="profile_pic">
@@ -12,7 +14,7 @@ class ProfileQuickInfo extends React.Component {
                 </div>
                 <div className="profile_info">
                     <span>Bienvenido,</span>
-                    <h2>John Doe</h2>
+                    <h2>{user.name}</h2>
                 </div>
             </div>
         );
@@ -21,6 +23,7 @@ class ProfileQuickInfo extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        currentUserReducer: state.currentUserReducer
     };
 }
 
