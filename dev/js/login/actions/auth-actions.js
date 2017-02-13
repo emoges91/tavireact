@@ -1,7 +1,6 @@
-import axios from 'axios';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
-import { API_REF_LOGIN, API_REF_BASE } from '../../utils/api-ref';
 import { SET_CURRENT_USER } from '../../common/actions/types';
+import { AXIOS_MAIN } from '../../utils/axios-main';
 
 export function setCurrentUser(user) {
   return {
@@ -22,19 +21,7 @@ export function login(data) {
   return dispatch => {
     var querystring = require('querystring');
 
-    var instance = axios.create({
-      //  baseURL: API_REF_BASE,
-      method: 'POST',
-      timeout: 1000,
-      data: querystring.stringify({
-        apiKey: 'VOFN459045NGFLGFL496WEYLPOP',
-        user: data.user,
-        pass: data.pass,
-        request: 'Authenticate'
-      }),
-    });
-
-    return instance.post(
+    return AXIOS_MAIN.post(
       '/api.php?request=Authenticate&apiKey=VOFN459045NGFLGFL496WEYLPOP',
       querystring.stringify({
         apiKey: 'VOFN459045NGFLGFL496WEYLPOP',

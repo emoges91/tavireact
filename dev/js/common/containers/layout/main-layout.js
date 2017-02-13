@@ -4,6 +4,7 @@ import AppTitle from '../../../menu/containers/app-title';
 import ProfileQuickInfo from '../../../profile/containers/profile-quick-info';
 import SidebarMenu from '../../../menu/containers/sidebar-menu';
 import Footer from '../footer';
+import CustomJQuery from '../custom-jquery';
 require('../../../../scss/style.scss');
 
 const id = "bodyElement";
@@ -28,7 +29,9 @@ const MainLayout = (props) => (
                 </div>
             </div>
         </div>
+        <CustomJQuery />
     </div>
+
 )
 
 export default MainLayout

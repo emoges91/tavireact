@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 var displayOptions = { "None": "none", };
 
 class SidebarMenu extends React.Component {
-
     render() {
         return (
             <div id="sidebar-menu" className="main_menu_side hidden-print main_menu">
@@ -56,11 +55,15 @@ class SidebarMenu extends React.Component {
             </div>
         );
     }
+
+
+
 }
 
 SidebarMenu.propTypes = {
     currentUserReducer: React.PropTypes.object.isRequired,
 }
+
 
 function mapStateToProps(state) {
     return {

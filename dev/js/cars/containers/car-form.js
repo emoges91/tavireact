@@ -4,9 +4,12 @@ import ComboField from '../../common/containers/forms/combo-field';
 import SingleCheckboxField from '../../common/containers/forms/single-checkbox-field';
 import validateInput from '../validations/new-car';
 import { CAR_BRANDS } from '../utils/cars-brands';
-import { CAR_YEARS } from '../utils/cars-years';
+import { CAR_TYPES } from '../utils/cars-types';
+import getYears from '../utils/cars-years';
+import getOwners from '../utils/cars-owners';
 import { connect } from 'react-redux';
 import { newCar } from '../actions/car-actions';
+import { AXIOS_MAIN } from '../../utils/axios-main';
 
 class CarForm extends React.Component {
     constructor(props) {
@@ -23,11 +26,13 @@ class CarForm extends React.Component {
             pets: '',
             smoke: '',
             errors: {},
-            isLoading: false
+            isLoading: false,
+            drivers: []
         };
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        //  this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     isValid() {
@@ -55,15 +60,39 @@ class CarForm extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    componentDidMount() {
+        AXIOS_MAIN
+            .get("api.php?request=Drivers&apiKey=VOFN459045NGFLGFL496WEYLPOP&token=djy1c27f4k9x6bsh0tx981ta")
+            .then(function (result) {
+
+                const driversList = result.data.map(function (item, i) {
+                    return (
+                        { id: item.Id, name: item.Name + " " + item.LastName }
+                    );
+                });
+
+                console.log("owners willmount : " + JSON.stringify(driversList));
+                this.setState({ drivers: driversList });
+            });
+
+
+        this.state.drivers = [{ id: 0, name: "hi" }];
+        console.log("owners Hi : " + JSON.stringify(this.state.drivers));
+    }
+
     render() {
-        const {identifier, placa, marca, model, year, type, owner, handicap, pets, smoke, errors, isLoading } = this.state;
-        console.log("years : " + JSON.stringify(CAR_YEARS));
+        const {identifier, placa, marca, model, year, type, owner, handicap, pets, smoke, errors, isLoading, drivers } = this.state;
+        const yearsList = getYears();
+        const ownersList = getOwners();
+        console.log("owners resp : " + JSON.stringify(ownersList));
+        console.log("drivers : " + JSON.stringify(drivers));
+
         return (
             <form className="form-horizontal form-label-left" onSubmit={this.onSubmit}>
                 <p>
                     Por favor rellene el formulario con los datos legitimos del vehiculo a inscribir
                 </p>
-                <br /> 
+                <br />
 
                 <TextField
                     field="placa"
@@ -90,13 +119,11 @@ class CarForm extends React.Component {
                     onChange={this.onChange}
                 />
 
-
-
                 <ComboField
                     field="year"
                     label="Año"
                     value={year}
-                    options={CAR_YEARS}
+                    options={yearsList}
                     error={errors.year}
                     onChange={this.onChange}
                 />
@@ -105,7 +132,7 @@ class CarForm extends React.Component {
                     field="type"
                     label="Tipo"
                     value={type}
-                    options={[]}
+                    options={CAR_TYPES}
                     error={errors.type}
                     onChange={this.onChange}
                 />
@@ -114,7 +141,7 @@ class CarForm extends React.Component {
                     field="owner"
                     label="Dueño"
                     value={owner}
-                    options={[]}
+                    options={drivers}
                     error={errors.owner}
                     onChange={this.onChange}
                 />

@@ -1,9 +1,10 @@
-export const CAR_YEARS = function getYears() {
-    var d = new Date();
+
+export default function getYears() {
+     var d = new Date();
     var n = d.getFullYear();
     var years = [];
 
-    for (i = 1980; i < (n + 1); i++) {
+    for (var i = n+1; i > 1980; i--) {
         years.push({ id: i, name: i }, );
     }
 

@@ -1,2 +1,3 @@
-export const API_REF_LOGIN =  'http://general-dev.com/viajerito/api/serv/v1/api.php?request=Authenticate&apiKey=VOFN459045NGFLGFL496WEYLPOP';
-export const API_REF_BASE =  'http://general-dev.com/viajerito/api/serv/v1/';
+export const API_REF_BASE =  'viajerito/api/serv/v1/';
+//export const API_REF_DOMAIN =  'http://general-dev.com/';
+export const API_REF_DOMAIN =  'http://localhost:3000/';

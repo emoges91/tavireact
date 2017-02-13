@@ -9,10 +9,10 @@ $(function () {
     $('#sidebar-menu li ul').slideUp();
     $('#sidebar-menu li').removeClass('active');
 
-    $('#sidebar-menu li').on('click touchstart', function() {
+    $('#sidebar-menu li').on('click touchstart', function () {
         var link = $('a', this).attr('href');
 
-        if(link) { 
+        if (link) {
             window.location.href = link;
         } else {
             if ($(this).is('.active')) {
@@ -21,7 +21,7 @@ $(function () {
             } else {
                 $('#sidebar-menu li').removeClass('active');
                 $('#sidebar-menu li ul').slideUp();
-                
+
                 $(this).addClass('active');
                 $('ul', this).slideDown();
             }
@@ -135,7 +135,7 @@ var __slice = [].slice;
 
         function Starrr($el, options) {
             var i, _, _ref,
-                    _this = this;
+                _this = this;
 
             this.options = $.extend({}, this.defaults, options);
             this.$el = $el;
@@ -238,6 +238,7 @@ $(document).ready(function () {
 
 });
 /** ******  /star rating  *********************** **/
+
 /** ******  table  *********************** **/
 $('table input').on('ifChecked', function () {
     check_state = '';

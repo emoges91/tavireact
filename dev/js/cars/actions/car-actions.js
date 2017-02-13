@@ -1,31 +1,10 @@
-import axios from 'axios';
-import { API_REF_LOGIN, API_REF_BASE } from '../../utils/api-ref';
+import { AXIOS_MAIN } from '../../utils/axios-main';
 
 export function newCar(data) {
     return dispatch => {
         var querystring = require('querystring');
 
-        var instance = axios.create({
-            //  baseURL: API_REF_BASE,
-            method: 'POST',
-            timeout: 1000,
-            data: querystring.stringify({
-                apiKey: 'VOFN459045NGFLGFL496WEYLPOP',
-                token: '',
-                placa: data.placa,
-                owner: data.owner,
-                year: data.year,
-                marca: data.marca,
-                model: data.model,
-                ishandicapped: data.handicap,
-                allowpets: data.pets,
-                type: data.type,
-                allowsmoke: data.smoke,
-                request: 'Cars'
-            }),
-        });
-
-        return instance.post(
+        return AXIOS_MAIN.post(
             '/api.php?request=Cars&apiKey=VOFN459045NGFLGFL496WEYLPOP',
             querystring.stringify({
                 apiKey: 'VOFN459045NGFLGFL496WEYLPOP',
